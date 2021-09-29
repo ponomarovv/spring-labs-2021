@@ -7,4 +7,6 @@ import java.util.List;
 public interface IGameService {
 
     List<Game> getAllWithTeamsAndSport();
+
+    List<Game> getAllByTeamNameLike(String name);
 }

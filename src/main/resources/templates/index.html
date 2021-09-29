@@ -11,7 +11,20 @@
         <div class="container">
             <div class="row">
                 <div class="col s12">
-                    <table>
+                    <div class="s-hflex-end">
+                        <form action="" method="get" class="s-hflex-end">
+                            <div class="input-field col s6" style="margin-bottom: 0px;">
+                                <input id="team-name" type="text" name="team-name" class="validate" style="margin: 0px;">
+                                <label for="team-name">Team Name</label>
+                            </div>
+                            <div class="s-vflex-end">
+                                <button type="submit" class="waves-effect waves-light btn">Confirm</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col s12">
+                    <table class="striped">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -27,7 +40,7 @@
                                 <td th:utext="${iterator.index + 1}"></td>
                                 <td th:utext="${game.firstTeam.name}"></td>
                                 <td th:utext="${game.secondTeam.name}"></td>
-                                <td th:utext="${game.sport.name}" class="weight-strong"></td>
+                                <td th:utext="${game.sport.name}" class="weight-normal"></td>
                                 <td th:utext="${game.date}"></td>
                                 <td th:utext="${game.firstTeamScore + ':' + game.secondTeamScore}"></td>
                             </tr>

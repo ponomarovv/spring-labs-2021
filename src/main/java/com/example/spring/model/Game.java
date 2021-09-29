@@ -4,6 +4,8 @@ import java.time.LocalDate;
 
 public class Game implements IModel<Integer> {
 
+    private static int counter = 1;
+
     private int id;
 
     private LocalDate date;
@@ -24,10 +26,14 @@ public class Game implements IModel<Integer> {
 
     private Team secondTeam;
 
-    public Game() {}
+    public Game() {
+        this.id = counter;
+        counter++;
+    }
 
-    public Game(int id, LocalDate date, int sportId, int firstTeamId, int secondTeamId, int firstTeamScore, int secondTeamScore) {
-        this.id = id;
+    public Game(LocalDate date, int sportId, int firstTeamId, int secondTeamId, int firstTeamScore, int secondTeamScore) {
+        this();
+
         this.date = date;
         this.sportId = sportId;
         this.firstTeamId = firstTeamId;

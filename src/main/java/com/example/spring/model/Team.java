@@ -2,14 +2,20 @@ package com.example.spring.model;
 
 public class Team implements IModel<Integer> {
 
+    private static int counter = 1;
+
     private int id;
 
     private String name;
 
-    public Team() {}
+    public Team() {
+        this.id = counter;
+        counter++;
+    }
 
-    public Team(int id, String name) {
-        this.id = id;
+    public Team(String name) {
+        this();
+
         this.name = name;
     }
 

@@ -4,13 +4,15 @@
       xmlns:th="http://www.thymeleaf.org"
       th:fragment="view(page)">
     <head>
-
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
         <title th:replace="~{${page} :: 'title'} ?: _">Games Schedule</title>
 
         <link th:href="@{/css/common.css}" rel="stylesheet" />
+        <link th:href="@{/css/indentations.css}" rel="stylesheet" />
         <link th:href="@{/css/materialize.min.css}" rel="stylesheet" />
     </head>
     <body>

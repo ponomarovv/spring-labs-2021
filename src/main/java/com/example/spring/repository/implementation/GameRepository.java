@@ -24,11 +24,17 @@ public class GameRepository extends GenericRepository<Game, Integer> implements 
         this.teamRepository = teamRepository;
         this.sportRepository = sportRepository;
 
-        entities.put(1, new Game(1, LocalDate.of(2020, Month.JANUARY, 12), 1, 1, 2, 0, 0));
-        entities.put(2, new Game(2, LocalDate.of(2020, Month.FEBRUARY, 15), 1, 3, 4, 1, 0));
-        entities.put(3, new Game(3, LocalDate.of(2020, Month.MARCH, 18), 2, 5, 4, 2, 1));
-        entities.put(4, new Game(4, LocalDate.of(2020, Month.MAY, 4), 3, 3, 2, 1, 3));
-        entities.put(5, new Game(5, LocalDate.of(2020, Month.APRIL, 7), 2, 5, 1, 2, 2));
+        Game game;
+        game = new Game(LocalDate.of(2020, Month.JANUARY, 12), 1, 1, 2, 0, 0);
+        entities.put(game.getId(), game);
+        game = new Game(LocalDate.of(2020, Month.FEBRUARY, 15), 1, 3, 4, 1, 0);
+        entities.put(game.getId(), game);
+        game = new Game(LocalDate.of(2020, Month.MARCH, 18), 2, 5, 4, 2, 1);
+        entities.put(game.getId(), game);
+        game = new Game(LocalDate.of(2020, Month.MAY, 4), 3, 3, 2, 1, 3);
+        entities.put(game.getId(), game);
+        game = new Game(LocalDate.of(2020, Month.APRIL, 7), 2, 5, 1, 2, 2);
+        entities.put(game.getId(), game);
     }
 
     @Override

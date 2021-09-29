@@ -9,10 +9,16 @@ import org.springframework.stereotype.Repository;
 public class TeamRepository extends GenericRepository<Team, Integer> implements ITeamRepository {
 
     public TeamRepository() {
-        entities.put(1, new Team(1, "Gryffindor"));
-        entities.put(2, new Team(2, "Hufflepuff"));
-        entities.put(3, new Team(3, "Ravenclaw"));
-        entities.put(4, new Team(4, "Slytherin"));
-        entities.put(5, new Team(5, "Tigers"));
+        Team team;
+        team = new Team("Gryffindor");
+        entities.put(team.getId(), team);
+        team = new Team("Hufflepuff");
+        entities.put(team.getId(), team);
+        team = new Team("Ravenclaw");
+        entities.put(team.getId(), team);
+        team = new Team("Slytherin");
+        entities.put(team.getId(), team);
+        team = new Team("Tigers");
+        entities.put(team.getId(), team);
     }
 }

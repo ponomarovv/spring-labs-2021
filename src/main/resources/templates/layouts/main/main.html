@@ -26,6 +26,7 @@
         <div th:replace="layouts/main/footer :: footer"></div>
 
         <script type="text/javascript" th:src="@{/js/materialize.min.js}"></script>
+        <script type="text/javascript" th:src="@{/js/startup.js}"></script>
         <div th:replace="~{${page} :: 'scripts'} ?: _"></div>
     </body>
 </html>

@@ -1,12 +1,12 @@
 package com.example.spring.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Game implements IModel<Integer> {
 
     private int id;
 
-    private Date date;
+    private LocalDate date;
 
     private int sportId;
 
@@ -24,6 +24,18 @@ public class Game implements IModel<Integer> {
 
     private Team secondTeam;
 
+    public Game() {}
+
+    public Game(int id, LocalDate date, int sportId, int firstTeamId, int secondTeamId, int firstTeamScore, int secondTeamScore) {
+        this.id = id;
+        this.date = date;
+        this.sportId = sportId;
+        this.firstTeamId = firstTeamId;
+        this.secondTeamId = secondTeamId;
+        this.firstTeamScore = firstTeamScore;
+        this.secondTeamScore = secondTeamScore;
+    }
+
     @Override
     public Integer getId() {
         return id;
@@ -33,11 +45,11 @@ public class Game implements IModel<Integer> {
         this.id = id;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

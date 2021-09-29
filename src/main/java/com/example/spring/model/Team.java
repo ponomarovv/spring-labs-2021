@@ -6,6 +6,13 @@ public class Team implements IModel<Integer> {
 
     private String name;
 
+    public Team() {}
+
+    public Team(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public Integer getId() {
         return id;
     }

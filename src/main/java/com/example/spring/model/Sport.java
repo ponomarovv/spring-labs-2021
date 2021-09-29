@@ -6,6 +6,13 @@ public class Sport implements IModel<Integer> {
 
     private String name;
 
+    public Sport() {}
+
+    public Sport(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     @Override
     public Integer getId() {
         return id;

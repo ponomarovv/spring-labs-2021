@@ -8,6 +8,8 @@ import com.example.spring.repository.abstraction.ITeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,6 +23,12 @@ public class GameRepository extends GenericRepository<Game, Integer> implements 
     public GameRepository(ITeamRepository teamRepository, ISportRepository sportRepository) {
         this.teamRepository = teamRepository;
         this.sportRepository = sportRepository;
+
+        entities.put(1, new Game(1, LocalDate.of(2020, Month.JANUARY, 12), 1, 1, 2, 0, 0));
+        entities.put(2, new Game(2, LocalDate.of(2020, Month.FEBRUARY, 15), 1, 3, 4, 1, 0));
+        entities.put(3, new Game(3, LocalDate.of(2020, Month.MARCH, 18), 2, 5, 4, 2, 1));
+        entities.put(4, new Game(4, LocalDate.of(2020, Month.MAY, 4), 3, 3, 2, 1, 3));
+        entities.put(5, new Game(5, LocalDate.of(2020, Month.APRIL, 7), 2, 5, 1, 2, 2));
     }
 
     @Override

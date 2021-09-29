@@ -1,4 +1,4 @@
-package com.example.springlab2;
+package com.example.springlabs;
 
 public class Team {
 }

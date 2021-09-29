@@ -22,4 +22,9 @@ public class GameService implements IGameService {
     public List<Game> getAllWithTeamsAndSport() {
         return gameRepository.findAllWithTeamsAndSport();
     }
+
+    @Override
+    public List<Game> getAllByTeamNameLike(String name) {
+        return gameRepository.findAllByTeamName(name);
+    }
 }

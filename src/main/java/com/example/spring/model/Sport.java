@@ -2,14 +2,20 @@ package com.example.spring.model;
 
 public class Sport implements IModel<Integer> {
 
+    private static int counter = 1;
+
     private int id;
 
     private String name;
 
-    public Sport() {}
+    public Sport() {
+        this.id = counter;
+        counter++;
+    }
 
-    public Sport(int id, String name) {
-        this.id = id;
+    public Sport(String name) {
+        this();
+
         this.name = name;
     }
 

@@ -1,4 +1,4 @@
-package com.example.spring;
+package com.example.spring.controller;
 
 import com.example.spring.service.abstraction.IGameService;
 import org.springframework.stereotype.Controller;
@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class GameController {
+public class GameController extends BaseController {
 
     private final IGameService gameService;
 
@@ -18,6 +18,7 @@ public class GameController {
     @GetMapping("/")
     public String getAllGames(@RequestParam(name = "team-name", required = false, defaultValue = "") String teamName, Model model) {
         model.addAttribute("games", gameService.getAllByTeamNameLike(teamName));
-        return "index";
+        model.addAttribute("teamName", teamName);
+        return render("index");
     }
 }

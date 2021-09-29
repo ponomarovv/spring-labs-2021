@@ -47,4 +47,14 @@ public class GameService implements IGameService {
     public List<Game> getAllByTeamNameLike(String name) {
         return gameRepository.findAllByTeamName(name);
     }
+
+    @Override
+    public void deleteBySportId(int sportId) {
+        gameRepository.deleteBySportId(sportId);
+    }
+
+    @Override
+    public void deleteByTeamId(int teamId) {
+        gameRepository.deleteByTeamId(teamId);
+    }
 }

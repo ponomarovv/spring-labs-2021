@@ -9,4 +9,8 @@ public interface IGameRepository extends IGenericRepository<Game, Integer> {
     List<Game> findAllWithTeamsAndSport();
 
     List<Game> findAllByTeamName(String teamName);
+
+    void deleteBySportId(int sportId);
+
+    void deleteByTeamId(int teamId);
 }

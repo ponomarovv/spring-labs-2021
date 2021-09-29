@@ -55,4 +55,18 @@ public class GameRepository extends GenericRepository<Game, Integer> implements 
                 game.getSecondTeam().getName().toLowerCase().contains(teamName.toLowerCase()))
             .collect(Collectors.toList());
     }
+
+    @Override
+    public void deleteBySportId(int sportId) {
+        entities = entities.values().stream()
+            .filter(game -> game.getSportId() != sportId)
+            .collect(Collectors.toMap(Game::getId, game -> game));
+    }
+
+    @Override
+    public void deleteByTeamId(int teamId) {
+        entities = entities.values().stream()
+            .filter(game -> game.getFirstTeamId() != teamId && game.getSecondTeamId() != teamId)
+            .collect(Collectors.toMap(Game::getId, game -> game));
+    }
 }

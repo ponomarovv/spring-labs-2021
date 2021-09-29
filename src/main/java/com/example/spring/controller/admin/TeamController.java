@@ -2,6 +2,7 @@ package com.example.spring.controller.admin;
 
 import com.example.spring.controller.BaseController;
 import com.example.spring.model.Team;
+import com.example.spring.service.abstraction.IGameService;
 import com.example.spring.service.abstraction.ITeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,10 +14,12 @@ import org.springframework.web.bind.annotation.*;
 public class TeamController extends BaseController {
 
     private final ITeamService teamService;
+    private final IGameService gameService;
 
     @Autowired
-    public TeamController(ITeamService teamService) {
+    public TeamController(ITeamService teamService, IGameService gameService) {
         this.teamService = teamService;
+        this.gameService = gameService;
     }
 
     @PostMapping("")
@@ -46,6 +49,7 @@ public class TeamController extends BaseController {
     @PostMapping("/delete/{id}")
     public String deleteTeam(@PathVariable int id) {
         teamService.delete(id);
+        gameService.deleteByTeamId(id);
         return "redirect:/admin/teams";
     }
 }

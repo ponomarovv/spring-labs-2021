@@ -21,19 +21,19 @@ public class TeamController extends BaseController {
 
     @PostMapping("")
     public String createTeam(@ModelAttribute Team team) {
-        teamService.createTeam(team);
+        teamService.create(team);
         return "redirect:/admin/teams";
     }
 
     @GetMapping("")
     public String getAllTeams(Model model) {
-        model.addAttribute("teams", teamService.getAllTeams());
+        model.addAttribute("teams", teamService.getAll());
         return render("team/index");
     }
 
     @PostMapping("/update/{id}")
     public String updateTeam(@ModelAttribute Team team) {
-        teamService.updateTeam(team);
+        teamService.update(team);
         return "redirect:/admin/teams";
     }
 
@@ -45,7 +45,7 @@ public class TeamController extends BaseController {
 
     @PostMapping("/delete/{id}")
     public String deleteTeam(@PathVariable int id) {
-        teamService.deleteTeam(id);
+        teamService.delete(id);
         return "redirect:/admin/teams";
     }
 }

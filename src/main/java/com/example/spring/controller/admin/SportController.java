@@ -21,19 +21,19 @@ public class SportController extends BaseController {
 
     @PostMapping("")
     public String createSport(@ModelAttribute Sport sport) {
-        sportService.createSport(sport);
+        sportService.create(sport);
         return "redirect:/admin/sports";
     }
 
     @GetMapping("")
     public String getAllSports(Model model) {
-        model.addAttribute("sports", sportService.getAllSports());
+        model.addAttribute("sports", sportService.getAll());
         return render("sport/index");
     }
 
     @PostMapping("/update/{id}")
     public String updateSport(@ModelAttribute Sport sport) {
-        sportService.updateSport(sport);
+        sportService.update(sport);
         return "redirect:/admin/sports";
     }
 
@@ -45,7 +45,7 @@ public class SportController extends BaseController {
 
     @PostMapping("/delete/{id}")
     public String deleteSport(@PathVariable int id) {
-        sportService.deleteSport(id);
+        sportService.delete(id);
         return "redirect:/admin/sports";
     }
 }

@@ -19,27 +19,26 @@ public class TeamService implements ITeamService {
     }
 
     @Override
-    public void createTeam(Team team) {
+    public void create(Team team) {
         teamRepository.create(team);
     }
 
     @Override
-    public Team get(int id) {
+    public Team get(Integer id) {
         return teamRepository.read(id);
     }
 
     @Override
-    public List<Team> getAllTeams() {
+    public List<Team> getAll() {
         return teamRepository.readAll();
     }
 
     @Override
-    public void updateTeam(Team team) {
+    public void update(Team team) {
         teamRepository.update(team);
     }
 
-    @Override
-    public void deleteTeam(int teamId) {
+    public void delete(Integer teamId) {
         teamRepository.delete(teamId);
     }
 }

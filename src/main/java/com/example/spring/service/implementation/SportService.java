@@ -19,27 +19,27 @@ public class SportService implements ISportService {
     }
 
     @Override
-    public void createSport(Sport sport) {
+    public void create(Sport sport) {
         sportRepository.create(sport);
     }
 
     @Override
-    public Sport get(int id) {
+    public Sport get(Integer id) {
         return sportRepository.read(id);
     }
 
     @Override
-    public List<Sport> getAllSports() {
+    public List<Sport> getAll() {
         return sportRepository.readAll();
     }
 
     @Override
-    public void updateSport(Sport sport) {
+    public void update(Sport sport) {
         sportRepository.update(sport);
     }
 
     @Override
-    public void deleteSport(int sportId) {
+    public void delete(Integer sportId) {
         sportRepository.delete(sportId);
     }
 }

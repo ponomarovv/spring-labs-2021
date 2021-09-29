@@ -7,15 +7,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class GameController extends BaseController {
+public class HomeController extends BaseController {
 
     private final IGameService gameService;
 
-    public GameController(IGameService gameService) {
+    public HomeController(IGameService gameService) {
         this.gameService = gameService;
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public String getAllGames(@RequestParam(name = "team-name", required = false, defaultValue = "") String teamName, Model model) {
         model.addAttribute("games", gameService.getAllByTeamNameLike(teamName));
         model.addAttribute("teamName", teamName);

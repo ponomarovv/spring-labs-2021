@@ -4,9 +4,7 @@ import com.example.spring.model.Game;
 
 import java.util.List;
 
-public interface IGameService {
-
-    List<Game> getAllWithTeamsAndSport();
+public interface IGameService extends ICrudService<Game, Integer> {
 
     List<Game> getAllByTeamNameLike(String name);
 }

@@ -1,5 +1,7 @@
 package com.example.spring.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDate;
 
 public class Game implements IModel<Integer> {
@@ -8,6 +10,7 @@ public class Game implements IModel<Integer> {
 
     private int id;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
 
     private int sportId;

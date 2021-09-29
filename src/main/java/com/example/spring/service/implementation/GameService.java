@@ -19,8 +19,28 @@ public class GameService implements IGameService {
     }
 
     @Override
-    public List<Game> getAllWithTeamsAndSport() {
+    public void create(Game game) {
+        gameRepository.create(game);
+    }
+
+    @Override
+    public Game get(Integer key) {
+        return gameRepository.read(key);
+    }
+
+    @Override
+    public List<Game> getAll() {
         return gameRepository.findAllWithTeamsAndSport();
+    }
+
+    @Override
+    public void update(Game game) {
+        gameRepository.update(game);
+    }
+
+    @Override
+    public void delete(Integer key) {
+        gameRepository.delete(key);
     }
 
     @Override

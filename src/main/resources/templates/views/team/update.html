@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-    <title th:fragment="title">Update sport</title>
+    <title th:fragment="title">Update team</title>
 
     <div class="container" th:fragment="content">
         <div class="row">
-            <form action="" method="post" class="s-hflex-start">
-                <input type="hidden" name="id" th:value="${team.id}" />
-                <div class="input-field" style="margin-bottom: 0px;">
-                    <input id="name" type="text" name="name" class="validate" style="margin: 0px;" th:value="${team.name}">
-                    <label for="name">Team Name</label>
+            <form action="" method="post" class="s-vflex-start">
+                <div class="s-hflex">
+                    <input type="hidden" name="id" th:value="${team.id}" />
+                    <div class="input-field" style="margin-bottom: 0px;">
+                        <input id="name" type="text" name="name" class="validate" style="margin: 0px;" th:value="${team.name}">
+                        <label for="name">Team Name</label>
+                    </div>
+                    <div class="s-vflex-end px10">
+                        <button type="submit" class="waves-effect waves-light btn">Confirm</button>
+                    </div>
                 </div>
-                <div class="s-vflex-end px10">
-                    <button type="submit" class="waves-effect waves-light btn">Confirm</button>
-                </div>
+                <ul>
+                    <li class="red-text" th:each="error: ${errors}" th:utext="${error}"></li>
+                </ul>
             </form>
         </div>
     </div>

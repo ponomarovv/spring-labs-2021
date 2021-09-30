@@ -8,7 +8,7 @@
             <div class="col s12">
                 <div class="s-hflex">
                     <div class="s-hflex-start">
-                        <form action="" method="get" class="s-hflex-end">
+                        <form action="" method="get" class="s-hflex-end" style="margin-bottom: 10px">
                             <div class="input-field" style="margin-bottom: 0px;">
                                 <input id="team-name" type="text" name="team-name" class="validate" style="margin: 0px;" th:value="${teamName}">
                                 <label for="team-name">Team Name</label>
@@ -18,10 +18,10 @@
                             </div>
                         </form>
                     </div>
-                </div>
-                <div class="equal-flex"></div>
-                <div>
-                    <a th:href="${'/admin/games'}">Create</a>
+                    <div class="equal-flex"></div>
+                    <div class="s-vflex-end mb10">
+                        <a th:href="${'/admin/games'}" class="waves-effect waves-light btn"><i class="material-icons right">add</i> Create</a>
+                    </div>
                 </div>
             </div>
             <div class="col s12">

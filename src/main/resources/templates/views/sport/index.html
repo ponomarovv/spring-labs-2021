@@ -7,14 +7,19 @@
         <div class="row">
             <div class="col s12">
                 <div class="s-hflex-end">
-                    <form action="" method="post" class="s-hflex-start">
-                        <div class="input-field col s6" style="margin-bottom: 0px;">
-                            <input id="name" type="text" name="name" class="validate" style="margin: 0px;">
-                            <label for="name">Sport Name</label>
+                    <form action="" method="post" class="s-vflex-end">
+                        <div class="s-hflex-end">
+                            <div class="input-field" style="margin-bottom: 0px;">
+                                <input id="name" type="text" name="name" class="validate" style="margin: 0px;" th:value="${sport != null} ? ${sport.name} : ''" />
+                                <label for="name">Sport Name</label>
+                            </div>
+                            <div class="s-vflex-end pl10">
+                                <button type="submit" class="waves-effect waves-light btn">Confirm</button>
+                            </div>
                         </div>
-                        <div class="s-vflex-end">
-                            <button type="submit" class="waves-effect waves-light btn">Confirm</button>
-                        </div>
+                        <ul>
+                            <li class="red-text" th:each="error: ${errors}" th:utext="${error}"></li>
+                        </ul>
                     </form>
                 </div>
             </div>

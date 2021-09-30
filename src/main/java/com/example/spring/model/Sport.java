@@ -1,11 +1,16 @@
 package com.example.spring.model;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 public class Sport implements IModel<Integer> {
 
     private static int counter = 1;
 
     private int id;
 
+    @NotNull
+    @Size(min=3, message = "The 'name' field must have at least {min} characters")
     private String name;
 
     public Sport() {

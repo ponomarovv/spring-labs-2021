@@ -5,51 +5,56 @@
 
 	<div th:fragment="content" class="container">
 		<div class="row">
-			<form th:action="${game == null} ? '/admin/games' : ''" method="post" class="">
-				<input type="hidden" name="id" th:value="${game} ? ${game.id} : '0'" />
-				<div class="input-field col s4">
-					<select th:value="${game} ? ${game.firstTeamId} : ''" name="firstTeamId">
-						<option th:each="team: ${teams}" th:value="${team.id}" th:utext="${team.name}"></option>
-					</select>
-					<label>First Team</label>
-				</div>
-				<div class="input-field col s4">
-					<select th:value="${game} ? ${game.secondTeamId} : ''" name="secondTeamId">
-						<option th:each="team: ${teams}" th:value="${team.id}" th:utext="${team.name}"></option>
-					</select>
-					<label>Second team</label>
-				</div>
-				<div class="input-field col s4">
-					<select th:value="${game} ? ${game.sportId} : ''" name="sportId">
-						<option th:each="sport: ${sports}" th:value="${sport.id}" th:utext="${sport.name}"></option>
-					</select>
-					<label>Sport</label>
-				</div>
-				<div class="input-field col s4">
-					<input type="text" class="datepicker" name="date" th:value="${game} ? ${game.date} : ''" />
-					<label>Date</label>
-				</div>
-				<div class="col s8">
-					<div class="s-hflex">
-						<div class="equal-flex">
-							<div class="input-field">
-								<input id="first-team-score" type="number" name="firstTeamScore" class="right-align validate" th:value="${game} ? ${game.firstTeamScore} : '0'">
-								<label for="first-team-score">First team score</label>
+			<div class="s-vflex">
+				<form th:action="${game == null} ? '/admin/games' : ''" method="post" class="">
+					<input type="hidden" name="id" th:value="${game} ? ${game.id} : '0'" />
+					<div class="input-field col s4">
+						<select th:value="${game} ? ${game.firstTeamId} : ''" name="firstTeamId">
+							<option th:each="team: ${teams}" th:value="${team.id}" th:utext="${team.name}"></option>
+						</select>
+						<label>First Team</label>
+					</div>
+					<div class="input-field col s4">
+						<select th:value="${game} ? ${game.secondTeamId} : ''" name="secondTeamId">
+							<option th:each="team: ${teams}" th:value="${team.id}" th:utext="${team.name}"></option>
+						</select>
+						<label>Second team</label>
+					</div>
+					<div class="input-field col s4">
+						<select th:value="${game} ? ${game.sportId} : ''" name="sportId">
+							<option th:each="sport: ${sports}" th:value="${sport.id}" th:utext="${sport.name}"></option>
+						</select>
+						<label>Sport</label>
+					</div>
+					<div class="input-field col s4">
+						<input type="text" class="datepicker" name="date" th:value="${game} ? ${game.date} : ''" />
+						<label>Date</label>
+					</div>
+					<div class="col s8">
+						<div class="s-hflex">
+							<div class="equal-flex">
+								<div class="input-field">
+									<input id="first-team-score" type="number" min="0" name="firstTeamScore" class="right-align validate" th:value="${game} ? ${game.firstTeamScore} : '0'">
+									<label for="first-team-score">First team score</label>
+								</div>
 							</div>
-						</div>
-						<div class="my20 px20 fs30 s-vflex-end">:</div>
-						<div class="equal-flex">
-							<div class="input-field">
-								<input id="second-team-score" type="number" name="secondTeamScore" class="validate" th:value="${game} ? ${game.secondTeamScore} : '0'">
-								<label for="second-team-score">Second team score</label>
+							<div class="my20 px20 fs30 s-vflex-end">:</div>
+							<div class="equal-flex">
+								<div class="input-field">
+									<input id="second-team-score" type="number" min="0" name="secondTeamScore" class="validate" th:value="${game} ? ${game.secondTeamScore} : '0'">
+									<label for="second-team-score">Second team score</label>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="col s12 right-align">
-					<button type="submit" class="waves-effect waves-light btn">Confirm</button>
-				</div>
-			</form>
+					<ul class="col s12">
+						<li class="red-text" th:each="error: ${errors}" th:utext="${error}"></li>
+					</ul>
+					<div class="col s12 right-align">
+						<button type="submit" class="waves-effect waves-light btn">Confirm</button>
+					</div>
+				</form>
+			</div>
 		</div>
 	</div>
 

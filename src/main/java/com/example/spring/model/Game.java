@@ -2,6 +2,8 @@ package com.example.spring.model;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
 import java.time.LocalDate;
 
 public class Game implements IModel<Integer> {
@@ -13,14 +15,19 @@ public class Game implements IModel<Integer> {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
 
+    @Positive(message = "You must select sport")
     private int sportId;
 
+    @Positive(message = "You must select first team")
     private int firstTeamId;
 
+    @Positive(message = "You must select second team")
     private int secondTeamId;
 
+    @PositiveOrZero(message = "First team's score must be greater than or equal to 0")
     private int firstTeamScore;
 
+    @PositiveOrZero(message = "Second team's score must be greater than or equal to 0")
     private int secondTeamScore;
 
     private Sport sport;

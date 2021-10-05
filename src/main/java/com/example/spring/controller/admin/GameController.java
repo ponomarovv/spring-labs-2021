@@ -2,7 +2,6 @@ package com.example.spring.controller.admin;
 
 import com.example.spring.controller.BaseController;
 import com.example.spring.model.Game;
-import com.example.spring.model.Sport;
 import com.example.spring.processor.abstraction.IFieldErrorProcessor;
 import com.example.spring.service.abstraction.IGameService;
 import com.example.spring.service.abstraction.ISportService;

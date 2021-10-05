@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+    <title th:fragment="title">Teams</title>
+
+    <div class="container" th:fragment="content">
+        <div class="row">
+            <div class="col s12">
+                <div class="s-hflex-end">
+                    <form action="" method="post" class="s-vflex-end">
+                        <div class="s-hflex-end">
+                            <div class="input-field " style="margin-bottom: 0px;">
+                                <input id="name" type="text" name="name" class="validate" style="margin: 0px;" th:value="${team != null} ? ${team.name} : ''" />
+                                <label for="name">Team Name</label>
+                            </div>
+                            <div class="s-vflex-end pl10">
+                                <button type="submit" class="waves-effect waves-light btn">Confirm</button>
+                            </div>
+                        </div>
+                        <ul>
+                            <li class="red-text" th:each="error: ${errors}" th:utext="${error}"></li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+            <div class="col s12">
+                <table class="striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th><i class="material-icons s-hflex-end">settings</i></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="team, iterator: ${teams}">
+                            <td th:utext="${iterator.index + 1}"></td>
+                            <td th:utext="${team.name}"></td>
+                            <td>
+                                <div class="s-hflex-end">
+                                    <div class="s-vflex-center">
+                                        <a th:href="${'/admin/teams/update/' + team.id}"><i class="material-icons">edit</i>
+                                        </a>
+                                    </div>
+                                    <form th:action="${'/admin/teams/delete/' + team.id}" method="post" style="margin-bottom: 0px">
+                                        <input type="hidden" name="id" th:value="${team.id}">
+                                        <button type="submit" class="btn-flat m0">
+                                            <i class="material-icons">delete</i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</html>

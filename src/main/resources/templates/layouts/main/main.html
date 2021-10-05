@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      th:fragment="view(page)">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+        <title th:replace="~{${page} :: 'title'} ?: _">Games Schedule</title>
+
+        <link th:href="@{/css/common.css}" rel="stylesheet" />
+        <link th:href="@{/css/indentations.css}" rel="stylesheet" />
+        <link th:href="@{/css/materialize.min.css}" rel="stylesheet" />
+    </head>
+    <body>
+
+        <div th:replace="layouts/main/header :: header"></div>
+
+        <main class="flex-auto">
+            <div th:replace="~{${page} :: 'content'} ?: _"></div>
+        </main>
+
+        <div th:replace="layouts/main/footer :: footer"></div>
+
+        <script type="text/javascript" th:src="@{/js/materialize.min.js}"></script>
+        <script type="text/javascript" th:src="@{/js/startup.js}"></script>
+        <div th:replace="~{${page} :: 'scripts'} ?: _"></div>
+    </body>
+</html>

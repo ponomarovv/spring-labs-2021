@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+    <title th:fragment="title">Games Schedule</title>
+
+    <div class="container" th:fragment="content">
+        <div class="row">
+            <div class="col s12">
+                <div class="s-hflex">
+                    <div class="s-hflex-start">
+                        <form action="" method="get" class="s-hflex-end" style="margin-bottom: 10px">
+                            <div class="input-field" style="margin-bottom: 0px;">
+                                <input id="team-name" type="text" name="team-name" class="validate" style="margin: 0px;" th:value="${teamName}">
+                                <label for="team-name">Team Name</label>
+                            </div>
+                            <div class="s-vflex-end px10">
+                                <button type="submit" class="waves-effect waves-light btn">Confirm</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="equal-flex"></div>
+                    <div class="s-vflex-end mb10">
+                        <a th:href="${'/admin/games'}" class="waves-effect waves-light btn"><i class="material-icons right">add</i> Create</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12">
+                <table class="striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>First Team</th>
+                            <th>Second Team</th>
+                            <th>Sport</th>
+                            <th>Date</th>
+                            <th>Score</th>
+                            <th><i class="material-icons s-hflex-end">settings</i></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="game, iterator: ${games}">
+                            <td th:utext="${iterator.index + 1}"></td>
+                            <td th:utext="${game.firstTeam.name}"></td>
+                            <td th:utext="${game.secondTeam.name}"></td>
+                            <td th:utext="${game.sport.name}" class="weight-normal"></td>
+                            <td th:utext="${game.date}"></td>
+                            <td th:utext="${game.firstTeamScore + ':' + game.secondTeamScore}"></td>
+                            <td>
+                                <div class="s-hflex-end">
+                                    <div class="s-vflex-center">
+                                        <a th:href="${'/admin/games/update/' + game.id}"><i class="material-icons">edit</i>
+                                        </a>
+                                    </div>
+                                    <form th:action="${'/admin/games/delete/' + game.id}" method="post" style="margin-bottom: 0px">
+                                        <input type="hidden" name="id" th:value="${game.id}">
+                                        <button type="submit" class="btn-flat m0">
+                                            <i class="material-icons">delete</i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</html>

@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IGameRepository extends IGenericRepository<Game, Integer> {
 
-    List<Game> findAllWithTeamsAndSport();
+    List<Game> findAllWithTeamsAndSports();
 
     List<Game> findAllByTeamName(String teamName);
 

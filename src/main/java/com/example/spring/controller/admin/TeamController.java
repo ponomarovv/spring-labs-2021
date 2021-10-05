@@ -2,8 +2,7 @@ package com.example.spring.controller.admin;
 
 import com.example.spring.controller.BaseController;
 import com.example.spring.model.Team;
-import com.example.spring.processor.abstraction.IFieldErrorProcessor;
-import com.example.spring.service.abstraction.IGameService;
+import com.example.spring.resolver.abstraction.IFieldErrorResolver;
 import com.example.spring.service.abstraction.ITeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,20 +17,18 @@ import javax.validation.Valid;
 public class TeamController extends BaseController {
 
     private final ITeamService teamService;
-    private final IGameService gameService;
-    private final IFieldErrorProcessor fieldErrorProcessor;
+    private final IFieldErrorResolver fieldErrorResolver;
 
     @Autowired
-    public TeamController(ITeamService teamService, IGameService gameService, IFieldErrorProcessor fieldErrorProcessor) {
+    public TeamController(ITeamService teamService, IFieldErrorResolver fieldErrorResolver) {
         this.teamService = teamService;
-        this.gameService = gameService;
-        this.fieldErrorProcessor = fieldErrorProcessor;
+        this.fieldErrorResolver = fieldErrorResolver;
     }
 
     @PostMapping("")
     public String createTeam(@Valid @ModelAttribute Team team, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            model.addAttribute("errors", fieldErrorProcessor.extractErrorMessages(bindingResult));
+            model.addAttribute("errors", fieldErrorResolver.extractErrorMessages(bindingResult));
             model.addAttribute("teams", teamService.getAll());
             model.addAttribute("team", team);
             return render("team/index");
@@ -49,7 +46,7 @@ public class TeamController extends BaseController {
     @PostMapping("/update/{id}")
     public String updateTeam(@Valid @ModelAttribute Team team, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            model.addAttribute("errors", fieldErrorProcessor.extractErrorMessages(bindingResult));
+            model.addAttribute("errors", fieldErrorResolver.extractErrorMessages(bindingResult));
             model.addAttribute("team", team);
             return render("team/update");
         }
@@ -66,7 +63,6 @@ public class TeamController extends BaseController {
     @PostMapping("/delete/{id}")
     public String deleteTeam(@PathVariable int id) {
         teamService.delete(id);
-        gameService.deleteByTeamId(id);
         return "redirect:/admin/teams";
     }
 }

@@ -4,7 +4,6 @@ import com.example.spring.model.Game;
 import com.example.spring.repository.abstraction.IGameRepository;
 import com.example.spring.service.abstraction.IGameService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -29,7 +28,7 @@ public class GameService implements IGameService {
 
     @Override
     public List<Game> getAll() {
-        return gameRepository.findAllWithTeamsAndSport();
+        return gameRepository.findAllWithTeamsAndSports();
     }
 
     @Override
@@ -45,15 +44,5 @@ public class GameService implements IGameService {
     @Override
     public List<Game> getAllByTeamNameLike(String name) {
         return gameRepository.findAllByTeamName(name);
-    }
-
-    @Override
-    public void deleteBySportId(int sportId) {
-        gameRepository.deleteBySportId(sportId);
-    }
-
-    @Override
-    public void deleteByTeamId(int teamId) {
-        gameRepository.deleteByTeamId(teamId);
     }
 }

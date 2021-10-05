@@ -1,6 +1,6 @@
-package com.example.spring.processor.implementation;
+package com.example.spring.resolver.implementation;
 
-import com.example.spring.processor.abstraction.IFieldErrorProcessor;
+import com.example.spring.resolver.abstraction.IFieldErrorResolver;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class FieldErrorProcessor implements IFieldErrorProcessor {
+public class FieldErrorResolver implements IFieldErrorResolver {
 
     @Override
     public List<String> extractErrorMessages(BindingResult bindingResult) {

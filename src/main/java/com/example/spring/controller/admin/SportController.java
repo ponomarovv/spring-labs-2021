@@ -2,8 +2,7 @@ package com.example.spring.controller.admin;
 
 import com.example.spring.controller.BaseController;
 import com.example.spring.model.Sport;
-import com.example.spring.processor.abstraction.IFieldErrorProcessor;
-import com.example.spring.service.abstraction.IGameService;
+import com.example.spring.resolver.abstraction.IFieldErrorResolver;
 import com.example.spring.service.abstraction.ISportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,20 +17,18 @@ import javax.validation.Valid;
 public class SportController extends BaseController {
 
     private final ISportService sportService;
-    private final IGameService gameService;
-    private final IFieldErrorProcessor fieldErrorProcessor;
+    private final IFieldErrorResolver fieldErrorResolver;
 
     @Autowired
-    public SportController(ISportService sportService, IGameService gameService, IFieldErrorProcessor fieldErrorProcessor) {
+    public SportController(ISportService sportService, IFieldErrorResolver fieldErrorResolver) {
         this.sportService = sportService;
-        this.gameService = gameService;
-        this.fieldErrorProcessor = fieldErrorProcessor;
+        this.fieldErrorResolver = fieldErrorResolver;
     }
 
     @PostMapping("")
     public String createSport(@Valid @ModelAttribute Sport sport, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            model.addAttribute("errors", fieldErrorProcessor.extractErrorMessages(bindingResult));
+            model.addAttribute("errors", fieldErrorResolver.extractErrorMessages(bindingResult));
             model.addAttribute("sports", sportService.getAll());
             model.addAttribute("sport", sport);
             return render("sport/index");
@@ -49,7 +46,7 @@ public class SportController extends BaseController {
     @PostMapping("/update/{id}")
     public String updateSport(@Valid @ModelAttribute Sport sport, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            model.addAttribute("errors", fieldErrorProcessor.extractErrorMessages(bindingResult));
+            model.addAttribute("errors", fieldErrorResolver.extractErrorMessages(bindingResult));
             model.addAttribute("sport", sport);
             return render("sport/update");
         }
@@ -66,7 +63,6 @@ public class SportController extends BaseController {
     @PostMapping("/delete/{id}")
     public String deleteSport(@PathVariable int id) {
         sportService.delete(id);
-        gameService.deleteBySportId(id);
         return "redirect:/admin/sports";
     }
 }

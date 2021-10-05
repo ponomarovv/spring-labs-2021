@@ -1,10 +1,10 @@
-package com.example.spring.processor.abstraction;
+package com.example.spring.resolver.abstraction;
 
 import org.springframework.validation.BindingResult;
 
 import java.util.List;
 
-public interface IFieldErrorProcessor {
+public interface IFieldErrorResolver {
 
     List<String> extractErrorMessages(BindingResult bindingResult);
 }

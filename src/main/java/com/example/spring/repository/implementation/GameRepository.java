@@ -16,14 +16,14 @@ import java.util.stream.Collectors;
 @Repository
 public class GameRepository extends GenericRepository<Game, Integer> implements IGameRepository {
 
-    private final ITeamRepository teamRepository;
-    private final ISportRepository sportRepository;
+    @Autowired
+    private ITeamRepository teamRepository;
 
     @Autowired
-    public GameRepository(ITeamRepository teamRepository, ISportRepository sportRepository) {
-        this.teamRepository = teamRepository;
-        this.sportRepository = sportRepository;
+    private ISportRepository sportRepository;
 
+    @Autowired
+    public GameRepository() {
         Game game;
         game = new Game(LocalDate.of(2020, Month.JANUARY, 12), 1, 1, 2, 0, 0);
         entities.put(game.getId(), game);
@@ -38,7 +38,7 @@ public class GameRepository extends GenericRepository<Game, Integer> implements 
     }
 
     @Override
-    public List<Game> findAllWithTeamsAndSport() {
+    public List<Game> findAllWithTeamsAndSports() {
         return entities.values().stream()
             .peek(game -> {
                 game.setSport(sportRepository.read(game.getSportId()));
@@ -49,7 +49,7 @@ public class GameRepository extends GenericRepository<Game, Integer> implements 
 
     @Override
     public List<Game> findAllByTeamName(String teamName) {
-        return findAllWithTeamsAndSport().stream()
+        return findAllWithTeamsAndSports().stream()
             .filter(game ->
                 game.getFirstTeam().getName().toLowerCase().contains(teamName.toLowerCase()) ||
                 game.getSecondTeam().getName().toLowerCase().contains(teamName.toLowerCase()))

@@ -11,6 +11,6 @@ public abstract class BaseController {
     }
 
     protected String render(String layout, String page) {
-        return "layouts/main/" + layout + " :: view(page='views/" + page + "')";
+        return layout;
     }
 }

@@ -16,7 +16,7 @@ public class HomeController extends BaseController {
     public String getAllGames(@RequestParam(name = "team-name", required = false, defaultValue = "") String teamName, Model model) {
         model.addAttribute("games", gameService.getAllByTeamNameLike(teamName));
         model.addAttribute("teamName", teamName);
-        return render("index");
+        return "main";
     }
 
     @Autowired

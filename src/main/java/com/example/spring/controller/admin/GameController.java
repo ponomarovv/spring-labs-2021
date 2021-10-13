@@ -8,7 +8,6 @@ import com.example.spring.service.abstraction.ISportService;
 import com.example.spring.service.abstraction.ITeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -33,12 +32,13 @@ public class GameController extends BaseController {
     }
 
     @PostMapping("")
-    public ModelAndView createGame(@Valid @ModelAttribute Game game, BindingResult bindingResult, Model model) {
+    public ModelAndView createGame(@Valid @ModelAttribute Game game, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            model.addAttribute("errors", fieldErrorResolver.extractErrorMessages(bindingResult));
-            model.addAttribute("game", game);
-            addRelationalData(model);
-            return render("game/update");
+            ModelAndView mav = render("game/update");
+            mav.addObject("errors", fieldErrorResolver.extractErrorMessages(bindingResult));
+            mav.addObject("game", game);
+            addRelationalData(mav);
+            return mav;
         }
         game.setId(new Game().getId());
         gameService.create(game);
@@ -46,29 +46,32 @@ public class GameController extends BaseController {
     }
 
     @GetMapping("")
-    public ModelAndView createGamePage(Model model) {
-        addRelationalData(model);
-        return render("game/update");
+    public ModelAndView createGamePage() {
+        ModelAndView mav = render("game/update");
+        addRelationalData(mav);
+        return mav;
     }
 
     @PostMapping("/update/{id}")
-    public ModelAndView updateGame(@Valid @ModelAttribute Game game, BindingResult bindingResult, Model model) {
+    public ModelAndView updateGame(@Valid @ModelAttribute Game game, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            model.addAttribute("errors", fieldErrorResolver.extractErrorMessages(bindingResult));
-            model.addAttribute("game", game);
-            addRelationalData(model);
-            return render("game/update");
+            ModelAndView mav = render("game/update");
+            mav.addObject("errors", fieldErrorResolver.extractErrorMessages(bindingResult));
+            mav.addObject("game", game);
+            addRelationalData(mav);
+            return mav;
         }
         gameService.update(game);
         return redirect("/");
     }
 
     @GetMapping("/update/{id}")
-    public ModelAndView showUpdateGamePage(@PathVariable int id, Model model) {
-        model.addAttribute("game", gameService.get(id));
-        model.addAttribute("sports", sportService.getAll());
-        model.addAttribute("teams", teamService.getAll());
-        return render("game/update");
+    public ModelAndView showUpdateGamePage(@PathVariable int id) {
+        ModelAndView mav = render("game/update");
+        mav.addObject("game", gameService.get(id));
+        mav.addObject("sports", sportService.getAll());
+        mav.addObject("teams", teamService.getAll());
+        return mav;
     }
 
     @PostMapping("/delete/{id}")
@@ -77,8 +80,8 @@ public class GameController extends BaseController {
         return redirect("/");
     }
 
-    private void addRelationalData(Model model) {
-        model.addAttribute("sports", sportService.getAll());
-        model.addAttribute("teams", teamService.getAll());
+    private void addRelationalData(ModelAndView mav) {
+        mav.addObject("sports", sportService.getAll());
+        mav.addObject("teams", teamService.getAll());
     }
 }

@@ -9,9 +9,9 @@
 
         <title>Hello, jsp</title>
 
-        <link href="<c:url value="css/common.css" />" rel="stylesheet" />
-        <link href="<c:url value="css/indentations.css" />" rel="stylesheet" />
-        <link href="<c:url value="css/materialize.min.css" />" rel="stylesheet" />
+        <link href="<c:url value="/css/common.css" />" rel="stylesheet" />
+        <link href="<c:url value="/css/indentations.css" />" rel="stylesheet" />
+        <link href="<c:url value="/css/materialize.min.css" />" rel="stylesheet" />
     </head>
     <body>
         <jsp:include page="/WEB-INF/jsp/layouts/main/header.jsp" />
@@ -22,7 +22,7 @@
 
         <jsp:include page="/WEB-INF/jsp/layouts/main/footer.jsp" />
 
-        <script type="text/javascript" src="<c:url value="js/materialize.min.js" />"></script>
+        <script type="text/javascript" src="<c:url value="/js/materialize.min.js" />"></script>
         <script type="text/javascript" src="<c:url value="/js/startup.js" />"></script>
         <script type="text/javascript" src="<c:url value="/js/title-resolver.js" />"></script>
     </body>

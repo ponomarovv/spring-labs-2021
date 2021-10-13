@@ -3,7 +3,6 @@ package com.example.spring.controller;
 import com.example.spring.service.abstraction.IGameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -13,15 +12,16 @@ public class HomeController extends BaseController {
 
     private IGameService gameService;
 
-    @GetMapping("")
-    public ModelAndView getAllGames(@RequestParam(name = "team-name", required = false, defaultValue = "") String teamName, Model model) {
-        model.addAttribute("games", gameService.getAllByTeamNameLike(teamName));
-        model.addAttribute("teamName", teamName);
-        return render("index");
+    @Autowired
+    public HomeController(IGameService gameService) {
+        this.gameService = gameService;
     }
 
-    @Autowired
-    public void setGameService(IGameService gameService) {
-        this.gameService = gameService;
+    @GetMapping("")
+    public ModelAndView getAllGames(@RequestParam(name = "team-name", required = false, defaultValue = "") String teamName) {
+        ModelAndView mav = render("index");
+        mav.addObject("games", gameService.getAllByTeamNameLike(teamName));
+        mav.addObject("teamName", teamName);
+        return mav;
     }
 }

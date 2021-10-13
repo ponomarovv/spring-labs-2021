@@ -6,7 +6,7 @@
                 <div class="s-hflex-start">
                     <form action="" method="get" class="s-hflex-end" style="margin-bottom: 10px">
                         <div class="input-field" style="margin-bottom: 0px;">
-                            <input id="team-name" type="text" name="team-name" class="validate" style="margin: 0px;" value="${teamName}">
+                            <input id="team-name" type="text" name="team-name" class="validate" style="margin: 0px;" value="<c:out value="${teamName}" />" />
                             <label for="team-name">Team Name</label>
                         </div>
                         <div class="s-vflex-end px10">
@@ -16,7 +16,7 @@
                 </div>
                 <div class="equal-flex"></div>
                 <div class="s-vflex-end mb10">
-                    <a href="${'/admin/games'}" class="waves-effect waves-light btn"><i class="material-icons right">add</i> Create</a>
+                    <a href="/admin/games" class="waves-effect waves-light btn"><i class="material-icons right">add</i> Create</a>
                 </div>
             </div>
         </div>
@@ -37,19 +37,19 @@
                     <c:forEach items="${games}" var="game" varStatus="status">
                         <tr>
                             <td>${status.index + 1}</td>
-                            <td>${game.firstTeam.name}</td>
-                            <td>${game.secondTeam.name}</td>
-                            <td class="weight-normal">${game.sport.name}</td>
-                            <td>${game.date}</td>
-                            <td>${game.firstTeamScore} : ${game.secondTeamScore}</td>
+                            <td><c:out value="${game.firstTeam.name}" /></td>
+                            <td><c:out value="${game.secondTeam.name}" /></td>
+                            <td class="weight-normal"><c:out value="${game.sport.name}" /></td>
+                            <td><c:out value="${game.date}" /></td>
+                            <td><c:out value="${game.firstTeamScore}" /> : <c:out value="${game.secondTeamScore}" /></td>
                             <td>
                                 <div class="s-hflex-end">
                                     <div class="s-vflex-center">
-                                        <a href="/admin/games/update/${game.id}"><i class="material-icons">edit</i>
+                                        <a href="/admin/games/update/<c:out value="${game.id}" />"><i class="material-icons">edit</i>
                                         </a>
                                     </div>
-                                    <form action="/admin/games/delete/${game.id}" method="post" style="margin-bottom: 0px">
-                                        <input type="hidden" name="id" value="${game.id}">
+                                    <form action="/admin/games/delete/<c:out value="${game.id}" />" method="post" style="margin-bottom: 0px">
+                                        <input type="hidden" name="id" value="<c:out value="${game.id}" />">
                                         <button type="submit" class="btn-flat m0">
                                             <i class="material-icons">delete</i>
                                         </button>

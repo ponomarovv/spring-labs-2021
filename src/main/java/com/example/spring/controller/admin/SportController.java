@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 
@@ -26,7 +27,7 @@ public class SportController extends BaseController {
     }
 
     @PostMapping("")
-    public String createSport(@Valid @ModelAttribute Sport sport, BindingResult bindingResult, Model model) {
+    public ModelAndView createSport(@Valid @ModelAttribute Sport sport, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("errors", fieldErrorResolver.extractErrorMessages(bindingResult));
             model.addAttribute("sports", sportService.getAll());
@@ -34,35 +35,35 @@ public class SportController extends BaseController {
             return render("sport/index");
         }
         sportService.create(sport);
-        return "redirect:/admin/sports";
+        return redirect(":/admin/sports");
     }
 
     @GetMapping("")
-    public String getAllSports(Model model) {
+    public ModelAndView getAllSports(Model model) {
         model.addAttribute("sports", sportService.getAll());
         return render("sport/index");
     }
 
     @PostMapping("/update/{id}")
-    public String updateSport(@Valid @ModelAttribute Sport sport, BindingResult bindingResult, Model model) {
+    public ModelAndView updateSport(@Valid @ModelAttribute Sport sport, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("errors", fieldErrorResolver.extractErrorMessages(bindingResult));
             model.addAttribute("sport", sport);
             return render("sport/update");
         }
         sportService.update(sport);
-        return "redirect:/admin/sports";
+        return redirect("/admin/sports");
     }
 
     @GetMapping("/update/{id}")
-    public String showUpdateSportPage(@PathVariable int id, Model model) {
+    public ModelAndView showUpdateSportPage(@PathVariable int id, Model model) {
         model.addAttribute("sport", sportService.get(id));
         return render("sport/update");
     }
 
     @PostMapping("/delete/{id}")
-    public String deleteSport(@PathVariable int id) {
+    public ModelAndView deleteSport(@PathVariable int id) {
         sportService.delete(id);
-        return "redirect:/admin/sports";
+        return redirect("/admin/sports");
     }
 }

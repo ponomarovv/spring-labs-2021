@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 
@@ -26,7 +27,7 @@ public class TeamController extends BaseController {
     }
 
     @PostMapping("")
-    public String createTeam(@Valid @ModelAttribute Team team, BindingResult bindingResult, Model model) {
+    public ModelAndView createTeam(@Valid @ModelAttribute Team team, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("errors", fieldErrorResolver.extractErrorMessages(bindingResult));
             model.addAttribute("teams", teamService.getAll());
@@ -34,35 +35,35 @@ public class TeamController extends BaseController {
             return render("team/index");
         }
         teamService.create(team);
-        return "redirect:/admin/teams";
+        return redirect("/admin/teams");
     }
 
     @GetMapping("")
-    public String getAllTeams(Model model) {
+    public ModelAndView getAllTeams(Model model) {
         model.addAttribute("teams", teamService.getAll());
         return render("team/index");
     }
 
     @PostMapping("/update/{id}")
-    public String updateTeam(@Valid @ModelAttribute Team team, BindingResult bindingResult, Model model) {
+    public ModelAndView updateTeam(@Valid @ModelAttribute Team team, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("errors", fieldErrorResolver.extractErrorMessages(bindingResult));
             model.addAttribute("team", team);
             return render("team/update");
         }
         teamService.update(team);
-        return "redirect:/admin/teams";
+        return redirect("/admin/teams");
     }
 
     @GetMapping("/update/{id}")
-    public String showUpdateTeamPage(@PathVariable int id, Model model) {
+    public ModelAndView showUpdateTeamPage(@PathVariable int id, Model model) {
         model.addAttribute("team", teamService.get(id));
         return render("team/update");
     }
 
     @PostMapping("/delete/{id}")
-    public String deleteTeam(@PathVariable int id) {
+    public ModelAndView deleteTeam(@PathVariable int id) {
         teamService.delete(id);
-        return "redirect:/admin/teams";
+        return redirect("/admin/teams");
     }
 }

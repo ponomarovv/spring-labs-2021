@@ -12,7 +12,10 @@ public class PermissionResolver implements IPermissionResolver {
         if (url != null && (url.startsWith("/js") || url.startsWith("/css"))) {
             return true;
         }
-        if ("/".equals(url)) {
+        if ("/".equals(url) && "admin".equals(role)) {
+            return true;
+        }
+        if ("/".equals(url) && httpMethod.matches("GET")) {
             return true;
         }
         if ("/login".equals(url) && !"admin".equals(role)) {

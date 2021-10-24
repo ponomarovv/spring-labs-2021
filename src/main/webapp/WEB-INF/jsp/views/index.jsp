@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="custom" tagdir="/WEB-INF/tags" %>
+
 <div class="container">
     <div class="row">
         <div class="col s12">
@@ -30,7 +32,9 @@
                         <th>Sport</th>
                         <th>Date</th>
                         <th>Score</th>
-                        <th><i class="material-icons s-hflex-end">settings</i></th>
+                        <custom:adminContent>
+                            <th><i class="material-icons s-hflex-end">settings</i></th>
+                        </custom:adminContent>
                     </tr>
                 </thead>
                 <tbody>
@@ -42,20 +46,22 @@
                             <td class="weight-normal"><c:out value="${game.sport.name}" /></td>
                             <td><c:out value="${game.date}" /></td>
                             <td><c:out value="${game.firstTeamScore}" /> : <c:out value="${game.secondTeamScore}" /></td>
-                            <td>
-                                <div class="s-hflex-end">
-                                    <div class="s-vflex-center">
-                                        <a href="/admin/games/update/<c:out value="${game.id}" />"><i class="material-icons">edit</i>
-                                        </a>
+                            <custom:adminContent>
+                                <td>
+                                    <div class="s-hflex-end">
+                                        <div class="s-vflex-center">
+                                            <a href="/admin/games/update/<c:out value="${game.id}" />"><i class="material-icons">edit</i>
+                                            </a>
+                                        </div>
+                                        <form action="/admin/games/delete/<c:out value="${game.id}" />" method="post" style="margin-bottom: 0px">
+                                            <input type="hidden" name="id" value="<c:out value="${game.id}" />">
+                                            <button type="submit" class="btn-flat m0">
+                                                <i class="material-icons">delete</i>
+                                            </button>
+                                        </form>
                                     </div>
-                                    <form action="/admin/games/delete/<c:out value="${game.id}" />" method="post" style="margin-bottom: 0px">
-                                        <input type="hidden" name="id" value="<c:out value="${game.id}" />">
-                                        <button type="submit" class="btn-flat m0">
-                                            <i class="material-icons">delete</i>
-                                        </button>
-                                    </form>
-                                </div>
-                            </td>
+                                </td>
+                            </custom:adminContent>
                         </tr>
                     </c:forEach>
                 </tbody>

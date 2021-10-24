@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class HomeController extends BaseController {
 
-    private IGameService gameService;
+    private final IGameService gameService;
 
     @Autowired
     public HomeController(IGameService gameService) {

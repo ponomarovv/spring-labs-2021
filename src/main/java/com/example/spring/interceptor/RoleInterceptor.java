@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 @Component
 public class RoleInterceptor implements HandlerInterceptor {
 
-    private final IRequestResolver requestResolver;
+    /*private final IRequestResolver requestResolver;
     private final IPermissionResolver permissionResolver;
 
     @Autowired
@@ -32,5 +32,5 @@ public class RoleInterceptor implements HandlerInterceptor {
             return false;
         }
         return true;
-    }
+    }*/
 }

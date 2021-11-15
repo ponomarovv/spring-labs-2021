@@ -1,4 +1,4 @@
-package com.example.spring.model;
+package com.example.spring.entity;
 
 public interface IModel<K> {
 

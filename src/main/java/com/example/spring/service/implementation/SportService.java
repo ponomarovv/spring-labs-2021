@@ -1,6 +1,6 @@
 package com.example.spring.service.implementation;
 
-import com.example.spring.model.Sport;
+import com.example.spring.entity.Sport;
 import com.example.spring.repository.abstraction.ISportRepository;
 import com.example.spring.service.abstraction.ISportService;
 import org.springframework.beans.factory.annotation.Autowired;

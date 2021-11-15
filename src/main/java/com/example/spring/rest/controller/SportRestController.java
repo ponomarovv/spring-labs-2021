@@ -1,6 +1,6 @@
 package com.example.spring.rest.controller;
 
-import com.example.spring.model.Sport;
+import com.example.spring.entity.Sport;
 import com.example.spring.service.abstraction.ISportService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

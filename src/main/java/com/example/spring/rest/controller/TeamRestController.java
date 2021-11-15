@@ -1,6 +1,6 @@
 package com.example.spring.rest.controller;
 
-import com.example.spring.model.Team;
+import com.example.spring.entity.Team;
 import com.example.spring.service.abstraction.ITeamService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

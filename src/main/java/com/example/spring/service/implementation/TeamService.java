@@ -1,6 +1,6 @@
 package com.example.spring.service.implementation;
 
-import com.example.spring.model.Team;
+import com.example.spring.entity.Team;
 import com.example.spring.repository.abstraction.ITeamRepository;
 import com.example.spring.service.abstraction.ITeamService;
 import org.springframework.beans.factory.annotation.Autowired;

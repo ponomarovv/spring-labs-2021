@@ -1,7 +1,7 @@
 package com.example.spring.controller.admin;
 
 import com.example.spring.controller.BaseController;
-import com.example.spring.model.Game;
+import com.example.spring.entity.Game;
 import com.example.spring.resolver.abstraction.IFieldErrorResolver;
 import com.example.spring.service.abstraction.IGameService;
 import com.example.spring.service.abstraction.ISportService;

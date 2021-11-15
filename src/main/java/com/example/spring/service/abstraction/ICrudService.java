@@ -1,6 +1,6 @@
 package com.example.spring.service.abstraction;
 
-import com.example.spring.model.IModel;
+import com.example.spring.entity.IModel;
 
 import java.util.List;
 

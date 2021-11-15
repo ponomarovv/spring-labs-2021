@@ -1,6 +1,7 @@
 package com.example.spring.rest.controller;
 
-import com.example.spring.model.Game;
+import com.example.spring.entity.Game;
+import com.example.spring.model.Pageable;
 import com.example.spring.service.abstraction.IGameService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -15,8 +16,8 @@ public class GameRestController {
     private final IGameService gameService;
 
     @GetMapping
-    public List<Game> getAll() {
-        return gameService.getAll();
+    public List<Game> getAll(@RequestParam(value = "name", defaultValue = "") String name, Pageable pageable) {
+        return gameService.getAllByTeamNameLike(name, pageable);
     }
 
     @GetMapping("/{id}")

@@ -1,7 +1,7 @@
 package com.example.spring.controller.admin;
 
 import com.example.spring.controller.BaseController;
-import com.example.spring.model.Team;
+import com.example.spring.entity.Team;
 import com.example.spring.resolver.abstraction.IFieldErrorResolver;
 import com.example.spring.service.abstraction.ITeamService;
 import org.springframework.beans.factory.annotation.Autowired;

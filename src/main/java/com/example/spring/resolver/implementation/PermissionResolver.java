@@ -9,7 +9,14 @@ public class PermissionResolver implements IPermissionResolver {
 
     @Override
     public boolean checkPermission(String role, String url, HttpMethod httpMethod) {
-        if (url != null && (url.startsWith("/js") || url.startsWith("/css"))) {
+        System.out.println("Url: " + url);
+        if (url == null) {
+            return false;
+        }
+        if (url.startsWith("/api")) {
+            return true;
+        }
+        if (url.startsWith("/js") || url.startsWith("/css")) {
             return true;
         }
         if ("/".equals(url) && "admin".equals(role)) {

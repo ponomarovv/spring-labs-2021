@@ -1,6 +1,7 @@
 package com.example.spring.service.implementation;
 
-import com.example.spring.model.Game;
+import com.example.spring.entity.Game;
+import com.example.spring.model.Pageable;
 import com.example.spring.repository.abstraction.IGameRepository;
 import com.example.spring.service.abstraction.IGameService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,5 +47,10 @@ public class GameService implements IGameService {
     @Override
     public List<Game> getAllByTeamNameLike(String name) {
         return gameRepository.findAllByTeamName(name);
+    }
+
+    @Override
+    public List<Game> getAllByTeamNameLike(String name, Pageable pageable) {
+        return gameRepository.findAllByTeamName(name, pageable);
     }
 }

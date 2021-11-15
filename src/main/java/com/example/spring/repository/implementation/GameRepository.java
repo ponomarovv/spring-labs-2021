@@ -1,6 +1,7 @@
 package com.example.spring.repository.implementation;
 
-import com.example.spring.model.Game;
+import com.example.spring.entity.Game;
+import com.example.spring.model.Pageable;
 import com.example.spring.repository.abstraction.GenericRepository;
 import com.example.spring.repository.abstraction.IGameRepository;
 import com.example.spring.repository.abstraction.ISportRepository;
@@ -50,9 +51,20 @@ public class GameRepository extends GenericRepository<Game, Integer> implements 
     @Override
     public List<Game> findAllByTeamName(String teamName) {
         return findAllWithTeamsAndSports().stream()
+                .filter(game ->
+                        game.getFirstTeam().getName().toLowerCase().contains(teamName.toLowerCase()) ||
+                                game.getSecondTeam().getName().toLowerCase().contains(teamName.toLowerCase()))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Game> findAllByTeamName(String teamName, Pageable pageable) {
+        return findAllWithTeamsAndSports().stream()
             .filter(game ->
                 game.getFirstTeam().getName().toLowerCase().contains(teamName.toLowerCase()) ||
                 game.getSecondTeam().getName().toLowerCase().contains(teamName.toLowerCase()))
+            .skip(pageable.getOffset())
+            .limit(pageable.getItemsCount())
             .collect(Collectors.toList());
     }
 

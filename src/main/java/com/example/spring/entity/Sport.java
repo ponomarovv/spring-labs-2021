@@ -1,4 +1,4 @@
-package com.example.spring.model;
+package com.example.spring.entity;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;

@@ -1,26 +1,26 @@
 package com.example.spring.service.implementation;
 
 import com.example.spring.entity.Sport;
+import com.example.spring.repository.abstraction.IGameRepository;
 import com.example.spring.repository.abstraction.ISportRepository;
 import com.example.spring.service.abstraction.ISportService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class SportService implements ISportService {
 
     private final ISportRepository sportRepository;
-
-    @Autowired
-    public SportService(ISportRepository sportRepository) {
-        this.sportRepository = sportRepository;
-    }
+    private final IGameRepository gameRepository;
 
     @Override
-    public void create(Sport sport) {
-        sportRepository.create(sport);
+    public Integer create(Sport sport) {
+        return sportRepository.create(sport);
     }
 
     @Override
@@ -39,7 +39,9 @@ public class SportService implements ISportService {
     }
 
     @Override
+    @Transactional
     public void delete(Integer sportId) {
+        gameRepository.deleteBySportId(sportId);
         sportRepository.delete(sportId);
     }
 }

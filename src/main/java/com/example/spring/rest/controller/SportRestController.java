@@ -25,9 +25,8 @@ public class SportRestController {
     }
 
     @PostMapping
-    public boolean add(@Valid Sport sport) {
-        sportService.create(sport);
-        return true;
+    public Integer add(@RequestBody @Valid Sport sport) {
+        return sportService.create(sport);
     }
 
     @PatchMapping("/update")

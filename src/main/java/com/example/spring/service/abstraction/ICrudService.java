@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ICrudService<T extends IModel<K>, K> {
 
-    void create(T t);
+    Integer create(T t);
 
     T get(K key);
 

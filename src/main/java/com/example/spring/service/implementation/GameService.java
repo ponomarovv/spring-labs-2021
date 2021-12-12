@@ -20,8 +20,8 @@ public class GameService implements IGameService {
     }
 
     @Override
-    public void create(Game game) {
-        gameRepository.create(game);
+    public Integer create(Game game) {
+        return gameRepository.create(game);
     }
 
     @Override

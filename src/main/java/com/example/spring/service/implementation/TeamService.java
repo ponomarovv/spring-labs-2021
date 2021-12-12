@@ -1,26 +1,26 @@
 package com.example.spring.service.implementation;
 
 import com.example.spring.entity.Team;
+import com.example.spring.repository.abstraction.IGameRepository;
 import com.example.spring.repository.abstraction.ITeamRepository;
 import com.example.spring.service.abstraction.ITeamService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class TeamService implements ITeamService {
 
     private final ITeamRepository teamRepository;
-
-    @Autowired
-    public TeamService(ITeamRepository teamRepository) {
-        this.teamRepository = teamRepository;
-    }
+    private final IGameRepository gameRepository;
 
     @Override
-    public void create(Team team) {
-        teamRepository.create(team);
+    public Integer create(Team team) {
+        return teamRepository.create(team);
     }
 
     @Override
@@ -38,7 +38,10 @@ public class TeamService implements ITeamService {
         teamRepository.update(team);
     }
 
+    @Override
+    @Transactional
     public void delete(Integer teamId) {
+        gameRepository.deleteByTeamId(teamId);
         teamRepository.delete(teamId);
     }
 }

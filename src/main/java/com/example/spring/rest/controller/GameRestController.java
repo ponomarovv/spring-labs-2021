@@ -26,9 +26,8 @@ public class GameRestController {
     }
 
     @PostMapping
-    public boolean add(@Valid Game game) {
-        gameService.create(game);
-        return true;
+    public Integer add(@RequestBody @Valid Game game) {
+        return gameService.create(game);
     }
 
     @PatchMapping("/update")

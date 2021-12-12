@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+    pgadmin:
+        image: dpage/pgadmin4:latest
+        container_name: pgadmin4
+        environment:
+            PGADMIN_DEFAULT_EMAIL: "games_schedule@gmail.com"
+            PGADMIN_DEFAULT_PASSWORD: "postgres"
+        ports:
+            - "80:80"
+    postgres:
+        image: postgres:latest
+        container_name: postgres
+        environment:
+            POSTGRES_USER: "postgres"
+            POSTGRES_PASSWORD: "postgres"
+        ports:
+            - "5432:5432"
+        volumes:
+            - /home/andrii/Data/Study/PostgreSQL:/var/lib/postgresql/data

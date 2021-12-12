@@ -25,9 +25,8 @@ public class TeamRestController {
     }
 
     @PostMapping
-    public boolean add(@Valid Team team) {
-        teamService.create(team);
-        return true;
+    public Integer add(@RequestBody @Valid Team team) {
+        return teamService.create(team);
     }
 
     @PatchMapping("/update")

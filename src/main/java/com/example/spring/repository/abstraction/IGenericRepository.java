@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IGenericRepository<T extends IModel<K>, K> {
 
-    void create(T entity);
+    Integer create(T entity);
 
     T read(K key);
 

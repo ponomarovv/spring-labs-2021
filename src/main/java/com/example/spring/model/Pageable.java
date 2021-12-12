@@ -21,9 +21,6 @@ public class Pageable {
     }
 
     public int getItemsCount() {
-        if (itemsCount < 0) {
-            return 0;
-        }
-        return itemsCount;
+        return Math.max(itemsCount, 0);
     }
 }
